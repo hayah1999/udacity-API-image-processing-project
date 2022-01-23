@@ -2,6 +2,7 @@ import express from 'express';
 import {promises as fspromises} from 'fs';
 import {constants} from 'fs';
 import sharp from 'sharp';
+import imageResize from './sharp';
 
 async function imageUrl(
  req: express.Request,
@@ -41,13 +42,7 @@ async function imageUrl(
    //make thumbs directory if doesn't exist
    await fspromises.mkdir('images/thumbs', {recursive: true});
    sharp.cache(true);
-   await sharp(`./images/${fileName}.jpg`)
-    .resize({
-     width: width,
-     height: height,
-     fit: sharp.fit.fill,
-    })
-    .toFile(`./images/thumbs/${fileName}_${width}_${height}.png`);
+   await imageResize('./images/', fileName, '.jpg', width, height);
 
    //telling the browser the response type is PNG
    res.type('png');
