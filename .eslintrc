@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+   
+    "extends": [
+        "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 13,
+        "sourceType": "module"
+    },
+    "plugins": [
+         "prettier"
+    ],
+    "rules": {
+        "prettier/prettier":  ["error",{
+            "endOfLine": "auto"}
+          ],
+        "no-use-before-define": ["error", { "functions": true, "classes": true }],
+        "no-var": "error",
+        "prefer-const": "error"
+      }
+}
